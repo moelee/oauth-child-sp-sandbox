@@ -1,0 +1,6 @@
+<h3>Contacts Application</h3>
+
+Welcome <%= current_user.login %>!
+
+<br>
+<p><%= link_to 'Your Contacts', user_contacts_path(current_user) %></p>
