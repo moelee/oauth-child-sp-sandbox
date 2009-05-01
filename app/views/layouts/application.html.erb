@@ -9,6 +9,9 @@
 <body>
 <h1 style="color:blue">Contacts (and ChildSP)</h1>
 <h4>Hosted on Moses's Cool Suite of Apps</h4>
+<% if logged_in? %>
+<%= link_to 'Logout', logout_path %>
+<% end %>
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield  %>
