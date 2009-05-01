@@ -118,7 +118,7 @@ module OAuth
           # IF we receive an ack, return true, set the current user to the appropriate var
           signature = OAuth::Signature.build(request)
           @consumer = OAuth::Consumer.new('', '', {:site => ENV['AUTH_SP_URL']})
-          response = @consumer.verify_access_token(signature.request.token)
+          response = @consumer.verify_access_token(signature.request.token, params[:controller])
           @current_user = User.find_by_identity_url(CGI.parse(response.body).values.first)
         rescue OAuth::Signature::UnknownSignatureMethod
           false

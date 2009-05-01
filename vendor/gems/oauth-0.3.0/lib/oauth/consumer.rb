@@ -97,8 +97,8 @@ module OAuth
     end
     
     # Verifies the access token
-    def verify_access_token(token)
-      response = http.request(create_http_request(:post, '/oauth/verify_access_token', {'token' => token}))
+    def verify_access_token(token, resource)
+      response = http.request(create_http_request(:post, '/oauth/verify_access_token', {'token' => token, 'resource' => resource}))
     end
     
     # Creates, signs and performs an http request.
