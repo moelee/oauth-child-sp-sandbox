@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090414214104) do
+ActiveRecord::Schema.define(:version => 20090501053117) do
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20090414214104) do
     t.string   "postal_code"
     t.string   "phone"
     t.string   "email"
-    t.string   "user_id"
+    t.integer  "user_id",     :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
