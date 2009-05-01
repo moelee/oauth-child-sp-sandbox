@@ -17,7 +17,7 @@ module OAuth
         logger.info "entering oauthenticate"
         verified=verify_oauth_signature 
         logger.info "verified=#{verified.to_s}"
-        return verified && current_token.is_a?(::AccessToken)
+        return verified #&& current_token.is_a?(::AccessToken)
       end
       
       def oauth?
@@ -91,7 +91,7 @@ module OAuth
         end
         @current_token
       end
-      
+=begin
       # Implement this for your own application using app-specific models
       def verify_oauth_signature
         begin
@@ -109,11 +109,17 @@ module OAuth
           false
         end
       end
-      
+=end      
+      # This is the new method for ChildSps to be able to make a callback to the AuthSP for verification
+      # of the signature
       def verify_oauth_signature
         begin
-          # Make a request to /oauth/verify_access_token?token=somethiingsomethign
+          # Make a request to /oauth/verify_access_token?token=something
           # IF we receive an ack, return true, set the current user to the appropriate var
+          signature=OAuth::Signature.build(request)
+          @consumer = OAuth::Consumer.new('', '', {:site => ENV['AUTH_SP_URL']})
+          response = @consumer.verify_access_token(signature.request.token)
+          @current_user = User.find_by_identity_url(CGI.parse(response.body).values.first)
         rescue
           false
         end
