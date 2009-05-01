@@ -22,4 +22,4 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
-ENV['AUTH_SP_URL'] = 'http://photorepo.heroku.com'
+ENV['AUTH_SP_URL'] = 'https://photorepo.heroku.com'
