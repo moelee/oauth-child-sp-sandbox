@@ -93,7 +93,7 @@ public
   # DELETE /contacts/1
   # DELETE /contacts/1.xml
   def destroy
-    @contact = Contacts.find(params[:id])
+    @contact = @user.contacts.find(params[:id])
     @contact.destroy
 
     respond_to do |format|
